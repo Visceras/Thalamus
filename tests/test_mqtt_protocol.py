@@ -54,13 +54,3 @@ class FixedTestCase(TestCase):
     def test_request(self):
         fixed = Protocol.Fixed()
         expect(fixed.retain).to_equal(None)
-
-class VariableTestCase(TestCase):
-
-    def test_lsb(self):
-        variable = Protocol.Variable()
-        expect(variable.lsb).to_equal(None)
-
-    def test_msb(self):
-        variable = Protocol.Variable()
-        expect(variable.msb).to_equal(None)
