@@ -1,4 +1,9 @@
+import types
+
 class Packet(object):
+    """
+    MQTT Packet structure
+    """
 
     def __init__(self, header=None, payload=None):
         self.header = header
@@ -12,7 +17,7 @@ class Header(object):
     Packet class
     """
 
-    def __init__(self, fixed, variable):
+    def __init__(self, fixed=None, variable=None):
         self.fixed = fixed
         self.variable = variable
 
@@ -32,7 +37,7 @@ class Fixed(object):
             +--------+-------------------------------+
     """
 
-    def __init__(self, packet_type, dup, qos, retain):
+    def __init__(self, packet_type=None, dup=None, qos=None, retain=None):
         self.packet_type = packet_type
 
         self.dup = dup
@@ -56,6 +61,6 @@ class Variable(object):
             +--------+-------------------------------+
     """
 
-    def __init__(self, msb, lsb):
+    def __init__(self, msb=None, lsb=None):
         self.msb = msb
         self.lsb = lsb
