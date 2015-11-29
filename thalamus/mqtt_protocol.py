@@ -1,64 +1,12 @@
-#import types
-#import binascii
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-class Flag(object):
+# This file is part of thalamus.
+# https://github.com/Visceras/Thalamus
 
-    length = 1
-
-    def __init__(self, value):
-        self.value = value
-
-    @classmethod
-    def convert(cls, args):
-        value = 0
-        values = [flag.value for flag in reversed(args)]
-
-        for index, val in enumerate(values):
-            value = (val << index) | value
-
-        return value
-
-    @classmethod
-    def length_error(cls, method, length, values):
-        if len(values) != length:
-            err = "{}() takes exactly {} arguments ({} given)"
-            raise ValueError(err.format(method, length, len(values)))
-
-    @classmethod
-    def flags_to_nibble(cls, *args):
-        method_name = "flags_to_nibble"
-        cls.length_error(method_name, 4, args)
-
-        value = cls.convert(args)
-        return Nibble(value)
-
-    @classmethod
-    def flags_to_byte(cls, *args):
-        method_name = "flags_to_byte"
-        cls.length_error(method_name, 8, args)
-
-        value = cls.convert(args)
-        return Byte(value)
-
-
-class Nibble(object):
-
-    length = 4
-
-    def __init__(self, value):
-        self.value = value
-
-    @staticmethod
-    def add_nibbles(nibble_1, nibble_2):
-        value = (nibble_1.value << 4) | nibble_2.value
-        return Byte(value)
-
-class Byte(object):
-
-    length = 8
-
-    def __init__(self, value):
-        self.value = value
+# Licensed under the MIT license:
+# http://www.opensource.org/licenses/MIT-license
+# Copyright (c) 2015, Francisco J. Piedrahita <franciscojpiedrahita@gmail.com>
 
 
 class Packet(object):
