@@ -43,14 +43,29 @@ class FixedTestCase(TestCase):
         fixed = Protocol.Fixed()
         expect(fixed.packet_type).to_equal(None)
 
-    def test_dup(self):
+    def test_flags(self):
         fixed = Protocol.Fixed()
-        expect(fixed.dup).to_equal(None)
+        expect(fixed.packet_flags).to_equal(None)
 
-    def test_qos(self):
+    def test_length(self):
         fixed = Protocol.Fixed()
-        expect(fixed.qos).to_equal(None)
+        expect(fixed.packet_length).to_equal(None)
 
-    def test_request(self):
-        fixed = Protocol.Fixed()
-        expect(fixed.retain).to_equal(None)
+
+class ConnectTestCase(TestCase):
+
+    def test_client_id(self):
+        connect = Protocol.Connect()
+        expect(connect.client_id).to_equal(None)
+
+    def test_keep_alive(self):
+        connect = Protocol.Connect()
+        expect(connect.keep_alive).to_equal(None)
+
+    def test_proto_ver(self):
+        connect = Protocol.Connect()
+        expect(connect.proto_ver).to_equal(0x04)
+
+    def test_proto_name(self):
+        connect = Protocol.Connect()
+        expect(connect.proto_name).to_equal("MQTT")
